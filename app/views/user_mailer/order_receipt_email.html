@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Thank you for shopping at the Jungle</h1>
+    <p>
+      Your order is successfully processed.
+    </p>
+    <p>
+      Your order number is <%= @order.id %>.
+    </p>
+    <p>
+      <% @order_total = 0 %>
+      <% @order.line_items.each do |details| %>
+      <%= render 'item', details: details %>
+      <% end %>
+    </p>
+    <p>Thanks for shopping and have a great day!</p>
+  </body>
+</html>
