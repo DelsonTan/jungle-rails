@@ -7,7 +7,6 @@
   <article class="product-detail">
 
     <div class="row">
-
       <div class="col-sm-4">
         <%= image_tag @product.image.url, class: 'main-img' %>
       </div>
@@ -22,9 +21,25 @@
           <dd><%= @product.quantity %></dd>
           <dt>Price</dt>
           <dd><%= @product.price %></dd>
+          <dt>Add Review</dt>
+          <dd>
+            <%= form_for(@product, url: product_reviews_path(@product), method: "post") do |f| %>
+        
+              <%= f.fields_for :review do |review|%>
+                
+                Rating: <%= review.select :rating, options_for_select([1,2,3,4,5]) %>
+                <br>
+                Description: <%= review.text_area :description %>
+          
+              <% end %>
+              <p>            
+                <%= f.submit %>
+              </p>
+            <% end %>
+          </dd>
           <dt>Reviews</dt>
           <dd>
-          <% %>
+          <% unless @product.reviews.length == 0 %>
             <% @product.reviews.each do |review| %>
               <% user = User.find_by id: review.user_id %>
               <%= user.first_name %>: <%= review.rating %>/5
@@ -32,6 +47,9 @@
               <%= review.description %> 
               <br>
             <% end %>
+          <% else %>
+          No reviews!
+          <% end %>
           </dd>
         </dl>
       </div>

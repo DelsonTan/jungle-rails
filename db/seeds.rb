@@ -168,7 +168,7 @@ review2 = Review.create!({
   product_id: reviewed_product_2.id,
   user_id: client.id,
   description: "Lol this thing stinks",
-  rating: 0
+  rating: 1
 })
 
 review3 = Review.create!({
