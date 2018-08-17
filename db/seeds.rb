@@ -35,7 +35,7 @@ puts "Re-creating Products ..."
 
 Product.destroy_all
 
-cat1.products.create!({
+reviewed_product_1 = cat1.products.create!({
   name:  'Men\'s Classy shirt',
   description: Faker::Hipster.paragraph(4),
   image: open_asset('apparel1.jpg'),
@@ -43,7 +43,7 @@ cat1.products.create!({
   price: 64.99
 })
 
-cat1.products.create!({
+reviewed_product_2 = cat1.products.create!({
   name:  'Women\'s Zebra pants',
   description: Faker::Hipster.paragraph(4),
   image: open_asset('apparel2.jpg'),
@@ -132,5 +132,43 @@ cat3.products.create!({
   price: 2_483.75
 })
 
+## USERS
+
+puts "Re-creating Users ..."
+
+User.destroy_all
+
+# password: admin
+admin = User.find_or_create_by!(first_name: 'Admin') do |admin| 
+  admin.last_name = 'User'
+  admin.email = 'jungle@book.com'
+  admin.password_digest = "$2a$10$iJ52aBnTmbSuCfOvjhGJMuODWyE8DsTXAjihBGGZvFQv7kmA7fmSS"
+end
+# password: 123
+client = User.find_or_create_by!(first_name: 'Normal') do |normal|
+  normal.last_name = 'User'
+  normal.email = 'normal@normal.com'
+  normal.password_digest = "$2a$10$bkjbusmUiNfln0szbHl3le6/55NvOOiCqY2hP74adXixTaz1EaLb2"
+end
+
+## REVIEWS
+
+puts "Re-creating Reviews ..."
+
+Review.destroy_all
+
+review1 = Review.create!({
+  product_id: reviewed_product_1.id,
+  user_id: admin.id,
+  description: "Much wow very great no bias at all not admin btw",
+  rating: 5
+})
+# password: 123
+review2 = Review.create!({
+  product_id: reviewed_product_2.id,
+  user_id: client.id,
+  description: "Lol this thing stinks",
+  rating: 0
+})
 
 puts "DONE!"
