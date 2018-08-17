@@ -163,12 +163,19 @@ review1 = Review.create!({
   description: "Much wow very great no bias at all not admin btw",
   rating: 5
 })
-# password: 123
+
 review2 = Review.create!({
   product_id: reviewed_product_2.id,
   user_id: client.id,
   description: "Lol this thing stinks",
   rating: 0
+})
+
+review3 = Review.create!({
+  product_id: reviewed_product_1.id,
+  user_id: client.id,
+  description: "Eh it's cool",
+  rating: 4
 })
 
 puts "DONE!"
