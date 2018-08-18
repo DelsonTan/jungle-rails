@@ -44,7 +44,13 @@
           <% unless @product.reviews.length == 0 %>
             <% @product.reviews.reverse_each do |review| %>
               <% user = User.find_by id: review.user_id %>
-              <%=user.first_name%> <%= user.last_name%>: <%= review.rating %>/5
+              <%=user.first_name%> <%= user.last_name%>: 
+                <% (1..review.rating).each do |star| %>
+                  ⭐
+                <% end %>
+                <% (1..(5 - review.rating)).each do |star| %>
+                  ★
+                <% end %>
               <br> 
               <%= review.description %> 
               <br>

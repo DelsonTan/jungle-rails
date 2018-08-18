@@ -5,6 +5,24 @@
       <h4><%= product.name %></h4>
     <% end %>
   </header>
+  <p>
+    <% unless product.reviews.size == 0 %>
+      <% total_rating = 0 %>
+      <% product.reviews.each do |review|%>
+        <% total_rating += review.rating %>
+      <% end %>
+      <% (1..(total_rating / product.reviews.size)).each do |star| %>
+        ⭐
+      <% end %>
+      <% (1..(5 - total_rating / product.reviews.size)).each do |star| %>
+        ★
+      <% end %>
+    <% else %>
+      <% (1..5).each do |star| %>
+        ★
+      <% end %>
+    <% end %>
+  </p>
   <p class="description">
     <%= product.description %>
   </p>
