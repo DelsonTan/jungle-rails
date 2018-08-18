@@ -21,6 +21,7 @@
           <dd><%= @product.quantity %></dd>
           <dt>Price</dt>
           <dd><%= @product.price %></dd>
+          <% unless !current_user%>
           <dt>Add Review</dt>
           <dd>
             <%= form_for(@product, url: product_reviews_path(@product), method: "post") do |f| %>
@@ -37,15 +38,21 @@
               </p>
             <% end %>
           </dd>
+          <% end %>
           <dt>Reviews</dt>
           <dd>
           <% unless @product.reviews.length == 0 %>
-            <% @product.reviews.each do |review| %>
+            <% @product.reviews.reverse_each do |review| %>
               <% user = User.find_by id: review.user_id %>
-              <%= user.first_name %>: <%= review.rating %>/5
+              <%=user.first_name%> <%= user.last_name%>: <%= review.rating %>/5
               <br> 
               <%= review.description %> 
               <br>
+              <% unless !current_user || current_user != user %>
+              <%= link_to 'Delete Review', product_review_path({id: review.id, product_id: review.product_id}), 
+              method: :delete %>
+              <br>
+              <% end %>
             <% end %>
           <% else %>
           No reviews!
