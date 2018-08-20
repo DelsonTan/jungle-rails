@@ -2,6 +2,11 @@
 
 A mini e-commerce application built with Rails 4.2 for purposes of teaching Rails by example.
 
+!["Registration"](https://github.com/DelsonTan/jungle-rails/blob/master/app/assets/images/registration.png)
+!["Login Page"](https://github.com/DelsonTan/jungle-rails/blob/master/app/assets/images/login.png)
+!["Logged in"](https://github.com/DelsonTan/jungle-rails/blob/master/app/assets/images/logged_in.png)
+!["Products"](https://github.com/DelsonTan/jungle-rails/blob/master/app/assets/images/products_with_ratings.png)
+!["Product Page"](https://github.com/DelsonTan/jungle-rails/blob/master/app/assets/images/product_show.png)
 
 ## Setup
 
@@ -20,6 +25,11 @@ A mini e-commerce application built with Rails 4.2 for purposes of teaching Rail
 Use Credit Card # 4111 1111 1111 1111 for testing success scenarios.
 
 More information in their docs: <https://stripe.com/docs/testing#cards>
+
+## Login Credentials for Testing
+
+username: jungle@book.com
+password: admin
 
 ## Dependencies
 
