@@ -12,8 +12,7 @@ class UsersController < ApplicationController
             redirect_to '/signup'
         end
     end
-
-
+    
     private
     def user_params
         user_input = params.require(:user).permit(
@@ -23,5 +22,4 @@ class UsersController < ApplicationController
                     :password,
                     :password_confirmation)
     end
-
 end
